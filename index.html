@@ -483,12 +483,12 @@ textarea.a-inp{min-height:80px;resize:vertical;}
                 <span class="photo-placeholder-text">Upload photo via<br>Admin → Photos</span>
               </div>
             </div>
-           <!---- <div class="code-badge">
+            <!--div class="code-badge">
               <div class="code-line"><span class="kw">const</span> <span class="fn">arnold</span> = {</div>
               <div class="code-line" style="padding-left:12px"><span class="fn">role</span>: <span class="str">"IT Student"</span>,</div>
               <div class="code-line" style="padding-left:12px"><span class="fn">open</span>: <span class="kw">true</span></div>
               <div class="code-line">};</div>
-            </div>--
+            </~div>
             <div class="status-badge"><span class="status-dot"></span> Open to work</div>-->
           </div>
         </div>
@@ -555,7 +555,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
       <div class="contact-form-card">
         <form id="contact-form" novalidate>
           <div class="form-row">
-            <div class="form-group"><label for="f-name">Your Name</label><input class="form-control" id="f-name" type="text" placeholder="John Doe" required></div>
+            <div class="form-group"><label for="f-name">Your Name</label><input class="form-control" id="f-name" type="text" placeholder="Arnold Shereni" required></div>
             <div class="form-group"><label for="f-email">Your Email</label><input class="form-control" id="f-email" type="email" placeholder="you@example.com" required></div>
           </div>
           <div class="form-group"><label for="f-subject">Subject</label><input class="form-control" id="f-subject" type="text" placeholder="Project collaboration..."></div>
@@ -637,7 +637,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
           <input class="a-inp" type="password" id="admin-pass" placeholder="••••••••" style="text-align:center;letter-spacing:4px;margin-bottom:12px">
           <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="Admin.login()"><i class="fas fa-unlock-alt"></i> Login</button>
         </div>
-        <!--<p style="margin-top:16px;font-size:.72rem;color:var(--text-3)">Arnold@Admin2025</p>-->
+        <p style="margin-top:16px;font-size:.72rem;color:var(--text-3)"></p>
       </div>
     </div>
 
@@ -761,15 +761,37 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 
         <!-- SETUP -->
         <div class="admin-tab-pane" id="tab-setup">
+          <!-- How it really works -->
+          <div style="background:linear-gradient(135deg,rgba(59,130,246,.08),transparent);border:1px solid rgba(59,130,246,.18);border-radius:var(--r-md);padding:16px 18px;margin-bottom:18px;">
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:8px;color:var(--text)">⚡ How live updates work</p>
+            <p style="font-size:.80rem;color:var(--text-2);margin-bottom:6px">
+              Credentials must be <strong>baked into the deployed file</strong> so every visitor’s browser can read your Supabase data — not just yours.
+            </p>
+            <ol style="font-size:.78rem;color:var(--text-2);padding-left:1.1rem;display:grid;gap:4px;line-height:1.6">
+              <li>Enter your URL &amp; key below → <strong>Test Connection</strong> until you see ✅</li>
+              <li>Click <strong>“Download Configured File”</strong> — credentials are baked into <code>index.html</code></li>
+              <li>Deploy that file to Netlify — <strong>one time only</strong></li>
+              <li>After that, every change you make via this admin appears <strong>instantly for all visitors</strong> — no further deploys ever</li>
+            </ol>
+          </div>
+
           <div class="a-form-box">
             <h4>🔗 Supabase Connection</h4>
-            <p style="font-size:.82rem;color:var(--text-2);margin-bottom:14px">Connect once — all changes go live instantly for every visitor worldwide. No re-deploying ever.</p>
             <div class="a-group"><label class="a-label">Supabase Project URL</label><input class="a-inp" id="cfg-url" placeholder="https://xxxxxxxx.supabase.co"></div>
             <div class="a-group"><label class="a-label">API Key (anon / publishable)</label><input class="a-inp" id="cfg-key" placeholder="eyJ... or sb_publishable_..."></div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px;margin-bottom:14px">
               <button class="btn btn-primary btn-sm" onclick="SetupAdmin.save()"><i class="fas fa-save"></i> Save &amp; Connect</button>
               <button class="btn btn-outline btn-sm" onclick="SetupAdmin.test()"><i class="fas fa-plug"></i> Test Connection</button>
               <span id="conn-result"></span>
+            </div>
+            <!-- Download button — the key step that fixes the visibility bug -->
+            <div style="border-top:1px solid var(--border);padding-top:14px">
+              <p style="font-size:.78rem;color:var(--text-2);margin-bottom:10px">
+                <strong>After connection shows ✅:</strong> download the configured file and deploy it to Netlify once.
+              </p>
+              <button id="dl-cfg-btn" class="btn btn-success" style="width:100%;justify-content:center;font-size:.85rem" onclick="SetupAdmin.downloadConfigured()">
+                <i class="fas fa-download"></i> Download Configured File (index.html)
+              </button>
             </div>
           </div>
           <hr class="divider">
@@ -837,15 +859,16 @@ create policy "anon delete"  on storage.objects for delete using (bucket_id='por
           <div class="setup-step">
             <div class="step-num">3</div>
             <div class="step-body">
-              <h4>Paste credentials above → Save &amp; Connect → Test Connection</h4>
-              <p>You should see <span class="conn-ok">"Connected! Tables found ✓"</span>. You can now add content.</p>
+              <h4>Test Connection → see ✅ "Connected! Tables found"</h4>
+              <p>Add your content (projects, photos, bio, skills, CV). Then click <strong>"Download Configured File"</strong> above to get <code>index.html</code> with your credentials baked in.</p>
             </div>
           </div>
           <div class="setup-step">
             <div class="step-num">4</div>
             <div class="step-body">
-              <h4>Deploy to Vercel — once, forever</h4>
-              <p><a href="https://vercel.com/new" target="_blank" rel="noopener" style="color:var(--blue)">vercel.com/new</a> → drag this file → live. All future updates happen through this admin only.</p>
+              <h4>Deploy index.html to Netlify — once, then never again</h4>
+              <p><a href="https://netlify.com" target="_blank" rel="noopener" style="color:var(--blue)">netlify.com</a> → drag <code>index.html</code> onto the deploy area → done.
+              From this point, every admin change you make is <strong>instantly visible to all visitors worldwide</strong> — no further deploys needed, ever.</p>
             </div>
           </div>
         </div>
@@ -886,12 +909,23 @@ const CONFIG = {
 };
 
 /* ════════════════════════════════════════════════════════════════
+ * EMBEDDED CREDENTIALS
+ * Set once via Admin → Setup → "Download Configured File", then deploy.
+ * Baking them here means every visitor — not just the admin’s browser —
+ * loads real Supabase data automatically.
+ * The anon key is safe to embed: RLS policies protect data, not the key.
+ * ════════════════════════════════════════════════════════════════ */
+const SUPABASE_URL = '';   // filled in by "Download Configured File"
+const SUPABASE_KEY = '';   // filled in by "Download Configured File"
+
+/* ════════════════════════════════════════════════════════════════
  * MODULE 2 — SUPABASE API CLIENT
  * All network calls live here. Nothing else touches fetch directly.
  * ════════════════════════════════════════════════════════════════ */
 const API = (() => {
-  let _url = localStorage.getItem('sb_url') || '';
-  let _key = localStorage.getItem('sb_key') || '';
+  /* Priority: embedded constants (all visitors) -> localStorage (admin session only) */
+  let _url = SUPABASE_URL || localStorage.getItem('sb_url') || '';
+  let _key = SUPABASE_KEY || localStorage.getItem('sb_key') || '';
 
   /* Build auth headers.
      Legacy JWT keys (eyJ…) need Authorization: Bearer.
@@ -1456,7 +1490,61 @@ const SetupAdmin = (() => {
       .catch(() => UI.toast('Copy failed — select the text manually.','error'));
   }
 
-  return { save, test, copySQL };
+  /* Download a version of this file with credentials baked in as constants.
+     Deploying that file means ALL visitors — not just the admin — can load data. */
+  async function downloadConfigured() {
+    const url = (document.getElementById('cfg-url').value || API.url).trim().replace(/\/$/,'');
+    const key = (document.getElementById('cfg-key').value || API.key).trim();
+
+    if (!url || !key) { UI.toast('Enter and save your credentials first.','error'); return; }
+    if (!url.includes('.supabase.co')) { UI.toast('URL must contain ".supabase.co".','error'); return; }
+
+    const dlBtn = document.getElementById('dl-cfg-btn');
+    dlBtn.disabled = true;
+    dlBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Building…';
+
+    try {
+      /* Fetch the current page source so we get the exact deployed HTML */
+      const res = await fetch(window.location.href);
+      if (!res.ok) throw new Error('Could not fetch page source');
+      let html = await res.text();
+
+      /* Replace the empty constant placeholders with real values.
+         Using exact string markers so the replacement is unambiguous. */
+      const urlMarker = "const SUPABASE_URL = '';   // filled in by \"Download Configured File\"";
+      const keyMarker = "const SUPABASE_KEY = '';   // filled in by \"Download Configured File\"";
+
+      if (!html.includes(urlMarker) || !html.includes(keyMarker)) {
+        /* Markers not found — may already be filled in. Try simple replacement. */
+        html = html
+          .replace(/const SUPABASE_URL = '[^']*';/, `const SUPABASE_URL = '${url}';`)
+          .replace(/const SUPABASE_KEY = '[^']*';/, `const SUPABASE_KEY = '${key}';`);
+      } else {
+        html = html
+          .replace(urlMarker, `const SUPABASE_URL = '${url}';   // embedded`)
+          .replace(keyMarker, `const SUPABASE_KEY = '${key}';   // embedded`);
+      }
+
+      /* Trigger download */
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const a    = Object.assign(document.createElement('a'), {
+        href    : URL.createObjectURL(blob),
+        download: 'index.html',
+      });
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+
+      UI.toast('✅ index.html downloaded! Deploy this file to Netlify — then every visitor will see your portfolio data.', 'success');
+    } catch(e) {
+      UI.toast('Download failed: ' + e.message + '. Make sure you are on a server (not file://).', 'error');
+    } finally {
+      dlBtn.disabled = false;
+      dlBtn.innerHTML = '<i class="fas fa-download"></i> Download Configured File';
+    }
+  }
+
+  return { save, test, copySQL, downloadConfigured };
 })();
 
 /* ════════════════════════════════════════════════════════════════
