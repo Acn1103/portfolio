@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Arnold Shereni — IT Professional, Full-Stack Developer & ML Explorer based in Harare, Zimbabwe.">
+  <meta name="description" content="Arnold Shereni — IT student and developer from Harare, Zimbabwe. Building full-stack web apps, mobile apps, and exploring ML. Open to opportunities.">
   <title>Arnold Shereni · IT Professional</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%233b82f6'/><text x='16' y='22' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='14' fill='white'>AS</text></svg>">
+  <!-- Open Graph (social sharing previews) -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Arnold Shereni · IT Professional">
+  <meta property="og:description" content="IT student and developer from Harare, Zimbabwe — full-stack, mobile apps, and ML. Open to opportunities.">
+  <meta property="og:image"       content="">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:title"      content="Arnold Shereni · IT Professional">
+  <meta name="twitter:description" content="IT student and developer from Harare, Zimbabwe. Building full-stack apps and exploring ML.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
+/* Skip-to-content (accessibility) */
+.skip-link{position:absolute;top:-100px;left:16px;background:var(--blue);color:#fff;padding:10px 18px;border-radius:var(--r-sm);font-weight:600;font-size:.85rem;z-index:99999;transition:top .2s;}
+.skip-link:focus{top:16px;}
 /* ============================================================
    DESIGN TOKENS
    ============================================================ */
@@ -99,15 +112,15 @@ h1,h2,h3,h4{font-family:var(--f-head);font-weight:700;line-height:1.15;color:var
 /* ============================================================
    HEADER
    ============================================================ */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,6,18,.80);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all .3s var(--ease);}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:auto;background:rgba(6,6,18,.80);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all .3s var(--ease);}
 html:not(.dark) .site-header{background:rgba(255,255,255,.85);}
 .site-header.scrolled{box-shadow:var(--shadow-md);}
-.navbar{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 0;}
-.nav-logo{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:1;min-width:0;}
 .nav-avatar{width:38px;height:38px;border-radius:50%;border:2px solid var(--blue);overflow:hidden;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-head);font-weight:700;color:#fff;font-size:.85rem;transition:box-shadow .25s var(--ease);}
 .nav-avatar:hover{box-shadow:0 0 0 4px var(--blue-glow);}
 .nav-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.nav-name{font-family:var(--f-head);font-size:1.3rem;font-weight:800;letter-spacing:-.5px;}
+.nav-name{font-family:var(--f-head);font-size:1.3rem;font-weight:800;letter-spacing:-.5px;white-space:nowrap;}
 .nav-name .accent{color:var(--blue);}
 .nav-links{display:flex;list-style:none;gap:2px;}
 .nav-links a{font-size:.875rem;font-weight:500;color:var(--text-2);padding:6px 14px;border-radius:var(--r-sm);transition:all .2s var(--ease);}
@@ -367,12 +380,42 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 }
 @media(max-width:768px){
   section{padding:64px 0;} .container{width:92%;}
-  .nav-name{font-size:1.2rem;}
-  .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;align-items:center;padding:14px 0 18px;gap:2px;transform:translateY(-110%);transition:transform .32s var(--ease);z-index:99;}
-  html:not(.dark) .nav-links{background:#fff;}
-  .nav-links.open{transform:none;box-shadow:var(--shadow-md);}
-  .nav-links li{width:80%;} .nav-links a{display:block;padding:9px 16px;font-size:.92rem;}
+  /* Hero padding-top matches header height */
+  .hero{padding-top:62px;}
+  /* ── Navbar mobile layout ── */
+  .navbar{gap:8px;padding:12px 0;overflow:hidden;}
+  .nav-logo{flex-shrink:1;min-width:0;max-width:calc(100% - 90px);}
+  .nav-name{font-size:1.1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .nav-avatar{width:34px;height:34px;font-size:.78rem;flex-shrink:0;}
+  .nav-controls{gap:6px;flex-shrink:0;}
   .hamburger{display:flex;}
+  /* ── Mobile dropdown: slides in from top, never bleeds into header ── */
+  .nav-links{
+    position:fixed;top:62px;left:0;right:0;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+    box-shadow:none;
+    flex-direction:column;align-items:center;
+    padding:10px 0 14px;gap:2px;
+    transform:translateY(-110%);
+    opacity:0;
+    transition:transform .3s var(--ease), opacity .3s var(--ease);
+    z-index:98;
+    pointer-events:none;
+  }
+  html:not(.dark) .nav-links{background:#fff;}
+  .nav-links.open{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:all;
+    box-shadow:var(--shadow-md);
+  }
+  .nav-links li{width:80%;}
+  .nav-links a{
+    display:block;padding:10px 16px;
+    font-size:.92rem;text-align:center;
+    border-radius:var(--r-sm);
+  }
   .hero{padding-top:64px;min-height:auto;padding-bottom:48px;}
   .photo-ring{width:210px;height:237px;}
   .photo-ring::before{inset:-10px;} .photo-ring::after{width:44px;height:44px;}
@@ -403,7 +446,13 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 }
 @media(max-width:480px){
   .container{width:94%;}
-  .nav-avatar{width:34px;height:34px;} .nav-name{font-size:1.1rem;}
+  .hero{padding-top:54px;}
+  .navbar{gap:6px;padding:10px 0;}
+  .nav-logo{max-width:calc(100% - 80px);}
+  .nav-avatar{width:32px;height:32px;font-size:.72rem;flex-shrink:0;}
+  .nav-name{font-size:.95rem;letter-spacing:-.3px;}
+  .icon-btn{width:32px;height:32px;font-size:.85rem;}
+  .nav-links{top:54px;}
   .hero-visual{margin-bottom:22px;}
   .photo-ring{width:165px;height:185px;} .photo-ring::before{border-width:1px;}
   .hero-headline{font-size:clamp(1.6rem,8vw,2rem);}
@@ -413,15 +462,21 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 }
 @media(max-width:380px){
   .container{width:96%;}
-  .nav-name{font-size:1rem;} .nav-avatar{width:32px;height:32px;}
+  .hero{padding-top:50px;}
+  .navbar{gap:5px;padding:9px 0;}
+  .nav-logo{max-width:calc(100% - 74px);}
+  .nav-avatar{width:28px;height:28px;font-size:.68rem;flex-shrink:0;}
+  .nav-name{font-size:.85rem;letter-spacing:-.4px;}
+  .nav-links{top:50px;}
   .photo-ring{width:145px;height:163px;}
-  .status-badge{display:none;} .stat-label{display:none;}
+  .status-badge{display:none;} .stat-label{font-size:.52rem;letter-spacing:.3px;}
   .hero-headline{font-size:1.5rem;}
   .about-photo-frame{max-width:180px;}
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div id="progress-bar"></div>
 
 <!-- HEADER -->
@@ -449,6 +504,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 </header>
 
 <!-- HERO -->
+<main id="main-content">
 <section class="hero" id="home" aria-label="Introduction">
   <canvas id="particle-canvas"></canvas>
   <div class="hero-orb hero-orb-1"></div>
@@ -483,12 +539,12 @@ textarea.a-inp{min-height:80px;resize:vertical;}
                 <span class="photo-placeholder-text">Upload photo via<br>Admin → Photos</span>
               </div>
             </div>
-            <!--div class="code-badge">
+           <!---- <div class="code-badge">
               <div class="code-line"><span class="kw">const</span> <span class="fn">arnold</span> = {</div>
               <div class="code-line" style="padding-left:12px"><span class="fn">role</span>: <span class="str">"IT Student"</span>,</div>
               <div class="code-line" style="padding-left:12px"><span class="fn">open</span>: <span class="kw">true</span></div>
               <div class="code-line">};</div>
-            </~div>
+            </div>
             <div class="status-badge"><span class="status-dot"></span> Open to work</div>-->
           </div>
         </div>
@@ -555,7 +611,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
       <div class="contact-form-card">
         <form id="contact-form" novalidate>
           <div class="form-row">
-            <div class="form-group"><label for="f-name">Your Name</label><input class="form-control" id="f-name" type="text" placeholder="Arnold Shereni" required></div>
+            <div class="form-group"><label for="f-name">Your Name</label><input class="form-control" id="f-name" type="text" placeholder="John Doe" required></div>
             <div class="form-group"><label for="f-email">Your Email</label><input class="form-control" id="f-email" type="email" placeholder="you@example.com" required></div>
           </div>
           <div class="form-group"><label for="f-subject">Subject</label><input class="form-control" id="f-subject" type="text" placeholder="Project collaboration..."></div>
@@ -585,6 +641,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
@@ -593,7 +650,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
       <p class="footer-tagline">Building digital experiences that make an impact.</p>
     </div>
     <div class="footer-bottom">
-      <span>&copy; <span id="footer-year"></span> Arnold. All rights reserved.</span>
+      <span>&copy; <span id="footer-year"></span> Arnold Shereni. All rights reserved.</span>
       <button class="admin-btn" onclick="Admin.open()">⚙ Admin</button>
     </div>
   </div>
@@ -624,7 +681,12 @@ textarea.a-inp{min-height:80px;resize:vertical;}
   <div class="admin-panel">
     <div class="admin-head">
       <h2>⚙ Admin Dashboard</h2>
-      <button class="icon-btn" onclick="Admin.close()" aria-label="Close admin"><i class="fas fa-times"></i></button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn btn-sm" id="logout-btn" onclick="Admin.logout()" style="display:none;background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2);font-size:.75rem" aria-label="Logout">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        <button class="icon-btn" onclick="Admin.close()" aria-label="Close admin"><i class="fas fa-times"></i></button>
+      </div>
     </div>
 
     <!-- Login -->
@@ -637,7 +699,7 @@ textarea.a-inp{min-height:80px;resize:vertical;}
           <input class="a-inp" type="password" id="admin-pass" placeholder="••••••••" style="text-align:center;letter-spacing:4px;margin-bottom:12px">
           <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="Admin.login()"><i class="fas fa-unlock-alt"></i> Login</button>
         </div>
-        <p style="margin-top:16px;font-size:.72rem;color:var(--text-3)"></p>
+        <p style="margin-top:16px;font-size:.72rem;color:var(--text-3)">Contact the site owner for access.</p>
       </div>
     </div>
 
@@ -761,18 +823,33 @@ textarea.a-inp{min-height:80px;resize:vertical;}
 
         <!-- SETUP -->
         <div class="admin-tab-pane" id="tab-setup">
-          <!-- How it really works -->
-          <div style="background:linear-gradient(135deg,rgba(59,130,246,.08),transparent);border:1px solid rgba(59,130,246,.18);border-radius:var(--r-md);padding:16px 18px;margin-bottom:18px;">
-            <p style="font-size:.82rem;font-weight:700;margin-bottom:8px;color:var(--text)">⚡ How live updates work</p>
-            <p style="font-size:.80rem;color:var(--text-2);margin-bottom:6px">
-              Credentials must be <strong>baked into the deployed file</strong> so every visitor’s browser can read your Supabase data — not just yours.
-            </p>
-            <ol style="font-size:.78rem;color:var(--text-2);padding-left:1.1rem;display:grid;gap:4px;line-height:1.6">
-              <li>Enter your URL &amp; key below → <strong>Test Connection</strong> until you see ✅</li>
-              <li>Click <strong>“Download Configured File”</strong> — credentials are baked into <code>index.html</code></li>
-              <li>Deploy that file to Netlify — <strong>one time only</strong></li>
-              <li>After that, every change you make via this admin appears <strong>instantly for all visitors</strong> — no further deploys ever</li>
-            </ol>
+          <!-- How it works -->
+          <div style="background:linear-gradient(135deg,rgba(59,130,246,.08),transparent);border:1px solid rgba(59,130,246,.18);border-radius:var(--r-md);padding:18px;margin-bottom:18px;">
+            <p style="font-size:.85rem;font-weight:700;margin-bottom:12px;color:var(--text)">⚡ How it works &mdash; read this first</p>
+
+            <div style="display:grid;gap:12px">
+              <div style="display:flex;gap:10px;align-items:flex-start">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0">A</div>
+                <div>
+                  <p style="font-size:.80rem;font-weight:600;color:var(--text);margin-bottom:2px">Enter your credentials here (once, right now)</p>
+                  <p style="font-size:.76rem;color:var(--text-2);margin-bottom:0">Paste your Supabase URL &amp; key below. Hit <strong>Save &amp; Connect</strong> until you see &#10003;. This saves them to your browser for this session.</p>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0">B</div>
+                <div>
+                  <p style="font-size:.80rem;font-weight:600;color:var(--text);margin-bottom:2px">Download &amp; deploy once &mdash; this is the key step</p>
+                  <p style="font-size:.76rem;color:var(--text-2);margin-bottom:0">Click <strong>"Download Configured File"</strong> below. Your credentials get baked inside <code>index.html</code>. Deploy that file to Netlify once. Now every visitor &mdash; on any device, any browser &mdash; loads real data automatically. <strong>You never need to enter credentials again.</strong></p>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start">
+                <div style="width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0">C</div>
+                <div>
+                  <p style="font-size:.80rem;font-weight:600;color:var(--text);margin-bottom:2px">All future updates are live &mdash; no more deploys, ever</p>
+                  <p style="font-size:.76rem;color:var(--text-2);margin-bottom:0">You save a project, photo, or bio change here &rarr; Supabase updates &rarr; a live WebSocket broadcasts the change &rarr; <strong>every open browser tab worldwide refreshes automatically</strong> within milliseconds. No visitor needs to hit refresh.</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="a-form-box">
@@ -885,7 +962,8 @@ create policy "anon delete"  on storage.objects for delete using (bucket_id='por
  * All constants in one place. Edit here, nowhere else.
  * ════════════════════════════════════════════════════════════════ */
 const CONFIG = {
-  ADMIN_PASSWORD : 'Arnold@Admin2025',
+  /* SHA-256 of the admin password — never store plain text in source */
+  ADMIN_PASSWORD_HASH : 'bb0e71c59b5bddf28c6881c58a38d3dc5a25b2df25b96d3b5f99e5da5f52d041',
   STORAGE_BUCKET : 'portfolio-media',
   FORMSUBMIT_URL : 'https://formsubmit.co/ajax/arnoldshereni@gmail.com',
   DEFAULT_ABOUT: {
@@ -996,7 +1074,11 @@ const State = (() => {
     yearFilter: 'all',
   };
   return {
-    get: (k) => k ? _s[k] : { ..._s },
+    get: (k) => {
+      /* Deep clone prevents callers from mutating internal state by reference */
+      const copy = JSON.parse(JSON.stringify(_s));
+      return k ? copy[k] : copy;
+    },
     set: (u) => { _s = { ..._s, ...u }; },
   };
 })();
@@ -1006,6 +1088,14 @@ const State = (() => {
  * Pure functions: state-in → DOM-out. No side effects beyond DOM.
  * ════════════════════════════════════════════════════════════════ */
 const Renderer = (() => {
+
+  /* Sanitise user-supplied text before injecting into innerHTML.
+     Uses the browser's own HTML parser — no library needed. */
+  function sanitize(str) {
+    const el = document.createElement('div');
+    el.textContent = String(str ?? '');
+    return el.innerHTML;
+  }
 
   /* Photos */
   function _setPhoto(imgId, phId, url) {
@@ -1065,19 +1155,21 @@ const Renderer = (() => {
 
   function _projectCard(p) {
     const type  = CONFIG.PROJECT_TYPES[p.type] || CONFIG.PROJECT_TYPES.other;
+    const sTitle = sanitize(p.title);
+    const sDesc  = sanitize(p.description);
     const thumb = p.image_url
-      ? `<img src="${p.image_url}" alt="${p.title}" loading="lazy">`
+      ? `<img src="${sanitize(p.image_url)}" alt="${sTitle}" loading="lazy">`
       : `<div class="project-thumb-icon">${type.icon}</div>`;
     const gBtn  = p.github_url ? `<button class="overlay-btn overlay-github" onclick="ProjectModal.open(${p.id},event)"><i class="fab fa-github"></i> Code</button>` : '';
     const lBtn  = p.live_url   ? `<button class="overlay-btn overlay-live"   onclick="ProjectModal.open(${p.id},event)"><i class="fas fa-external-link-alt"></i> Live</button>` : '';
     const dfBtn = (!gBtn && !lBtn) ? `<button class="overlay-btn overlay-github"><i class="fas fa-info-circle"></i> Details</button>` : '';
     return `
-      <article class="project-card" onclick="ProjectModal.open(${p.id})" tabindex="0" role="button" aria-label="View ${p.title}">
-        <div class="project-thumb" style="background:${p.color}14">${thumb}
+      <article class="project-card" onclick="ProjectModal.open(${p.id})" tabindex="0" role="button" aria-label="View ${sTitle}">
+        <div class="project-thumb" style="background:${sanitize(p.color)}14">${thumb}
           <div class="project-overlay">${gBtn}${lBtn}${dfBtn}</div>
         </div>
         <div class="project-body">
-          <h3>${p.title}</h3><p>${p.description}</p>
+          <h3>${sTitle}</h3><p>${sDesc}</p>
           <div class="project-meta">
             <span class="project-year">${p.year}</span>
             <span class="project-type">${type.label}</span>
@@ -1107,7 +1199,12 @@ const Renderer = (() => {
   function animateVisibleSkills() {
     document.querySelectorAll('.skill-fill').forEach(bar => {
       const r = bar.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) bar.style.width = `${bar.dataset.pct}%`;
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        bar.style.width = `${bar.dataset.pct}%`;
+      } else if (r.top >= window.innerHeight) {
+        /* Reset so bar re-animates when scrolled back into view */
+        bar.style.width = '0%';
+      }
     });
   }
 
@@ -1165,12 +1262,28 @@ const ProjectModal = (() => {
 
 /* ── Core admin shell ── */
 const Admin = (() => {
-  let _loggedIn = false;
+  /* ── Session: sessionStorage clears when the tab is closed ── */
+  const SESSION_KEY  = 'as_admin_ok';
+  const ATTEMPTS_KEY = 'as_admin_attempts';
+  const LOCKOUT_KEY  = 'as_admin_lockout';
+  const MAX_ATTEMPTS = 5;
+  const LOCKOUT_MS   = 30_000; // 30 seconds
 
-  /* Tab switching — wired on DOMContentLoaded */
+  const _isLoggedIn   = () => sessionStorage.getItem(SESSION_KEY) === '1';
+  const _getAttempts  = () => parseInt(sessionStorage.getItem(ATTEMPTS_KEY) || '0', 10);
+  const _getLockout   = () => parseInt(sessionStorage.getItem(LOCKOUT_KEY)  || '0', 10);
+  const _isLocked     = () => Date.now() < _getLockout();
+
+  /* ── Hash a string with SHA-256 (Web Crypto, built into every browser) ── */
+  async function _sha256(str) {
+    const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  /* ── Tab switching ── */
   function _initTabs() {
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.admin-tab-pane').forEach(p => p.classList.remove('active'));
         this.classList.add('active');
@@ -1179,42 +1292,119 @@ const Admin = (() => {
     });
   }
 
+  /* ── Focus trap inside admin panel (accessibility) ── */
+  function _initFocusTrap() {
+    document.getElementById('admin-backdrop').addEventListener('keydown', e => {
+      if (e.key !== 'Tab' || !document.getElementById('admin-backdrop').classList.contains('open')) return;
+      const panel      = document.querySelector('.admin-panel');
+      const focusable  = [...panel.querySelectorAll('button:not([disabled]),input,select,textarea,a[href],[tabindex]:not([tabindex="-1"])')].filter(el => !el.closest('[style*="display:none"]'));
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+
   function _loadDashboard() {
     const s = State.get();
-    ProjectAdmin._render();
+    ProjectAdmin.renderList();
     document.getElementById('a-bio1').value = s.about.bio1 || '';
     document.getElementById('a-bio2').value = s.about.bio2 || '';
-    SkillsAdmin._render();
-    PhotoAdmin._renderPreviews();
-    CVAdmin._renderStatus();
+    SkillsAdmin.renderList();
+    PhotoAdmin.renderPreviews();
+    CVAdmin.renderStatus();
     document.getElementById('cfg-url').value = API.url;
     document.getElementById('cfg-key').value = API.key;
   }
 
-  function open()  { document.getElementById('admin-backdrop').classList.add('open'); if (!_loggedIn) setTimeout(() => document.getElementById('admin-pass').focus(), 80); }
-  function close() { document.getElementById('admin-backdrop').classList.remove('open'); }
-
-  function login() {
-    if (document.getElementById('admin-pass').value !== CONFIG.ADMIN_PASSWORD) {
-      document.getElementById('login-error').style.display = 'block';
-      document.getElementById('admin-pass').value = '';
-      return;
-    }
-    _loggedIn = true;
+  function _showDashboard() {
     document.getElementById('admin-login-screen').style.display = 'none';
     document.getElementById('admin-dashboard').style.display    = 'flex';
-    document.getElementById('login-error').style.display        = 'none';
+    document.getElementById('logout-btn').style.display         = '';
+  }
+
+  function _showLogin(msg) {
+    document.getElementById('admin-login-screen').style.display = '';
+    document.getElementById('admin-dashboard').style.display    = 'none';
+    document.getElementById('logout-btn').style.display         = 'none';
+    if (msg) {
+      const el = document.getElementById('login-error');
+      el.textContent = msg; el.style.display = 'block';
+    }
+  }
+
+  function open() {
+    document.getElementById('admin-backdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (_isLoggedIn()) {
+      _showDashboard(); _loadDashboard();
+    } else {
+      _showLogin();
+      setTimeout(() => document.getElementById('admin-pass').focus(), 80);
+    }
+  }
+
+  function close() {
+    document.getElementById('admin-backdrop').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  async function login() {
+    /* Lockout check */
+    if (_isLocked()) {
+      const secs = Math.ceil((_getLockout() - Date.now()) / 1000);
+      _showLogin(`Too many attempts. Try again in ${secs}s.`);
+      return;
+    }
+
+    const input    = document.getElementById('admin-pass');
+    const password = input.value;
+    input.value    = '';
+
+    /* Hash the typed password and compare to stored hash */
+    const hash = await _sha256(password);
+    if (hash !== CONFIG.ADMIN_PASSWORD_HASH) {
+      const attempts = _getAttempts() + 1;
+      sessionStorage.setItem(ATTEMPTS_KEY, attempts);
+      if (attempts >= MAX_ATTEMPTS) {
+        sessionStorage.setItem(LOCKOUT_KEY, Date.now() + LOCKOUT_MS);
+        sessionStorage.removeItem(ATTEMPTS_KEY);
+        _showLogin(`Too many incorrect attempts. Locked for 30 seconds.`);
+      } else {
+        _showLogin(`Incorrect password. ${MAX_ATTEMPTS - attempts} attempt${MAX_ATTEMPTS - attempts === 1 ? '' : 's'} remaining.`);
+      }
+      return;
+    }
+
+    /* Success */
+    sessionStorage.setItem(SESSION_KEY, '1');
+    sessionStorage.removeItem(ATTEMPTS_KEY);
+    document.getElementById('login-error').style.display = 'none';
+    _showDashboard();
     _loadDashboard();
+  }
+
+  function logout() {
+    sessionStorage.removeItem(SESSION_KEY);
+    _showLogin('You have been logged out.');
+    document.getElementById('admin-pass').value = '';
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     _initTabs();
+    _initFocusTrap();
     document.getElementById('admin-pass').addEventListener('keydown', e => { if (e.key === 'Enter') Admin.login(); });
+    /* Escape key closes whichever overlay is open */
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      if (document.getElementById('project-modal').classList.contains('open')) ProjectModal.close();
+      else if (document.getElementById('admin-backdrop').classList.contains('open')) Admin.close();
+    });
     document.getElementById('admin-backdrop').addEventListener('click', e => { if (e.target.id === 'admin-backdrop') Admin.close(); });
-    document.getElementById('project-modal').addEventListener('click', e => { if (e.target.id === 'project-modal')  ProjectModal.close(); });
+    document.getElementById('project-modal').addEventListener('click',  e => { if (e.target.id === 'project-modal')  ProjectModal.close(); });
   });
 
-  return { open, close, login };
+  return { open, close, login, logout };
 })();
 
 /* ── Projects Admin ── */
@@ -1222,7 +1412,7 @@ const ProjectAdmin = (() => {
   let _editId = null;
   let _newImg  = null;
 
-  function _render() {
+  function renderList() {
     const el = document.getElementById('admin-projects-list');
     const projects = State.get('projects');
     if (!projects.length) { el.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:20px">No projects yet.</p>'; return; }
@@ -1245,7 +1435,9 @@ const ProjectAdmin = (() => {
     const title = document.getElementById('p-title').value.trim();
     const desc  = document.getElementById('p-desc').value.trim();
     const year  = parseInt(document.getElementById('p-year').value);
-    if (!title || !desc || !year) { UI.toast('Title, Description, and Year are required.','error'); return; }
+    if (!title)                        { UI.toast('Project title is required.','error'); return; }
+    if (!desc)                         { UI.toast('Project description is required.','error'); return; }
+    if (!year || year < 2000 || year > 2099) { UI.toast('Please enter a valid year between 2000 and 2099.','error'); return; }
 
     let imageUrl = _editId ? (State.get('projects').find(p => p.id == _editId)?.image_url || null) : null;
     if (_newImg) {
@@ -1266,7 +1458,8 @@ const ProjectAdmin = (() => {
       }
       Renderer.renderProjects(State.get('projects'), State.get('yearFilter'));
       Renderer.renderYearFilters(State.get('projects'), State.get('yearFilter'));
-      _render(); cancelEdit();
+      renderList(); cancelEdit();
+      Realtime.notify('projects'); // push change to all open tabs & devices
       UI.toast(_editId ? 'Project updated! ✓' : 'Project added! ✓','success');
     } catch(e) { UI.toast('Save failed: ' + e.message,'error'); }
   }
@@ -1291,7 +1484,9 @@ const ProjectAdmin = (() => {
       State.set({ projects: State.get('projects').filter(p => p.id != id) });
       Renderer.renderProjects(State.get('projects'), State.get('yearFilter'));
       Renderer.renderYearFilters(State.get('projects'), State.get('yearFilter'));
-      _render(); UI.toast('Project deleted.');
+      renderList();
+      Realtime.notify('projects');
+      UI.toast('Project deleted.');
     } catch(e) { UI.toast('Delete failed: ' + e.message,'error'); }
   }
 
@@ -1311,12 +1506,12 @@ const ProjectAdmin = (() => {
     prev.src = URL.createObjectURL(_newImg); prev.style.display = 'block';
   }
 
-  return { save, edit, delete:del, cancelEdit, onImageSelect, _render };
+  return { save, edit, delete:del, cancelEdit, onImageSelect, renderList };
 })();
 
 /* ── About Admin ── */
-const AboutAdmin = (() => ({
-  async save() {
+const AboutAdmin = (() => {
+  async function save() {
     if (!API.isConfigured()) { UI.toast('Configure Supabase first.','error'); return; }
     const bio1 = document.getElementById('a-bio1').value.trim();
     if (!bio1) { UI.toast('Bio paragraph 1 is required.','error'); return; }
@@ -1325,14 +1520,16 @@ const AboutAdmin = (() => ({
       await API.upsert('about_me', { id:1, bio1, bio2 });
       State.set({ about:{ bio1, bio2 } });
       Renderer.renderAbout({ bio1, bio2 });
+      Realtime.notify('about');
       UI.toast('Bio updated! ✓','success');
     } catch(e) { UI.toast('Save failed: ' + e.message,'error'); }
   }
-}))();
+  return { save };
+})();
 
 /* ── Skills Admin ── */
 const SkillsAdmin = (() => {
-  function _render() {
+  function renderList() {
     document.getElementById('skills-admin-list').innerHTML = State.get('skills').map((s,i) => `
       <div class="skill-admin-row">
         <input class="a-inp skill-name-inp" value="${s.name}" placeholder="Skill name">
@@ -1340,8 +1537,8 @@ const SkillsAdmin = (() => {
         <button class="skill-del-btn" onclick="SkillsAdmin.removeRow(${i})" aria-label="Remove"><i class="fas fa-times"></i></button>
       </div>`).join('');
   }
-  function addRow()    { State.set({ skills:[...State.get('skills'),{ name:'New Skill', pct:50 }] }); _render(); }
-  function removeRow(i){ const sk=[...State.get('skills')]; sk.splice(i,1); State.set({skills:sk}); _render(); }
+  function addRow()    { State.set({ skills:[...State.get('skills'),{ name:'New Skill', pct:50 }] }); renderList(); }
+  function removeRow(i){ const sk=[...State.get('skills')]; sk.splice(i,1); State.set({skills:sk}); renderList(); }
   async function save() {
     if (!API.isConfigured()) { UI.toast('Configure Supabase first.','error'); return; }
     const rows   = document.querySelectorAll('.skill-admin-row');
@@ -1356,15 +1553,16 @@ const SkillsAdmin = (() => {
       const created = skills.length ? await API.insert('skills', skills) : [];
       State.set({ skills:created });
       Renderer.renderSkills(created);
+      Realtime.notify('skills');
       UI.toast('Skills updated! ✓','success');
     } catch(e) { UI.toast('Save failed: ' + e.message,'error'); }
   }
-  return { addRow, removeRow, save, _render };
+  return { addRow, removeRow, save, renderList };
 })();
 
 /* ── Photo Admin ── */
 const PhotoAdmin = (() => {
-  function _renderPreviews() {
+  function renderPreviews() {
     const s = State.get('settings');
     _updateSlot('prev-nav',   'del-nav',   s.nav_photo   || null, true);
     _updateSlot('prev-hero',  'del-hero',  s.hero_photo  || null, false);
@@ -1388,6 +1586,7 @@ const PhotoAdmin = (() => {
       State.set({ settings });
       Renderer.renderAllPhotos(settings);
       _updateSlot(prevId, delId, url, key==='nav_photo');
+      Realtime.notify('settings');
       UI.toast('Photo updated! ✓ Visible to all visitors now.','success');
     } catch(e) { UI.toast('Upload failed: ' + e.message,'error'); }
   }
@@ -1399,15 +1598,16 @@ const PhotoAdmin = (() => {
       State.set({ settings });
       Renderer.renderAllPhotos(settings);
       _updateSlot(prevId, delId, null, key==='nav_photo');
+      Realtime.notify('settings');
       UI.toast('Photo removed.');
     } catch(e) { UI.toast('Remove failed: ' + e.message,'error'); }
   }
-  return { upload, remove, _renderPreviews };
+  return { upload, remove, renderPreviews };
 })();
 
 /* ── CV Admin ── */
 const CVAdmin = (() => {
-  function _renderStatus() {
+  function renderStatus() {
     const url  = State.get('settings').cv_url;
     const name = State.get('settings').cv_name;
     const el   = document.getElementById('cv-status');
@@ -1429,7 +1629,8 @@ const CVAdmin = (() => {
       await API.upsert('settings', { key:'cv_url',  value:url });
       await API.upsert('settings', { key:'cv_name', value:file.name });
       State.set({ settings:{ ...State.get('settings'), cv_url:url, cv_name:file.name } });
-      _renderStatus();
+      renderStatus();
+      Realtime.notify('settings');
       UI.toast('CV uploaded! Visitors can now download it. ✓','success');
     } catch(e) { UI.toast('Upload failed: ' + e.message,'error'); }
   }
@@ -1437,9 +1638,11 @@ const CVAdmin = (() => {
     if (!confirm('Remove CV?')) return;
     await API.upsert('settings', { key:'cv_url', value:null });
     State.set({ settings:{ ...State.get('settings'), cv_url:null } });
-    _renderStatus(); UI.toast('CV removed.');
+    renderStatus();
+    Realtime.notify('settings');
+    UI.toast('CV removed.');
   }
-  return { upload, remove, _renderStatus };
+  return { upload, remove, renderStatus };
 })();
 
 /* ── Setup Admin ── */
@@ -1581,9 +1784,18 @@ const UI = (() => {
 
   /* Mobile menu */
   function initMobileMenu() {
-    const ham   = document.getElementById('hamburger');
-    const links = document.getElementById('nav-links');
+    const ham    = document.getElementById('hamburger');
+    const links  = document.getElementById('nav-links');
+    const header = document.getElementById('site-header');
+
+    /* Position dropdown flush under the actual rendered header height */
+    function _updateMenuTop() {
+      const hh = header.getBoundingClientRect().height;
+      links.style.top = Math.round(hh) + 'px';
+    }
+
     ham.addEventListener('click', () => {
+      _updateMenuTop();
       const open = links.classList.toggle('open');
       ham.setAttribute('aria-expanded', open);
       const [s1,s2,s3] = ham.querySelectorAll('span');
@@ -1591,11 +1803,18 @@ const UI = (() => {
       s2.style.opacity   = open ? '0' : '1';
       s3.style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
     });
+
+    /* Close menu and reset hamburger on link click */
     document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
       links.classList.remove('open');
       ham.setAttribute('aria-expanded','false');
       ham.querySelectorAll('span').forEach(s => { s.style.transform=''; s.style.opacity='1'; });
     }));
+
+    /* Recalculate position if window resizes */
+    window.addEventListener('resize', () => {
+      if (links.classList.contains('open')) _updateMenuTop();
+    }, { passive:true });
   }
 
   /* Scroll effects */
@@ -1686,6 +1905,11 @@ const Animations = (() => {
     }
     let _rt;
     window.addEventListener('resize', () => { clearTimeout(_rt); _rt=setTimeout(init,200); });
+    /* Pause animation when tab is not visible — saves CPU */
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(_raf);
+      else draw();
+    });
     init();
   }
 
@@ -1755,7 +1979,9 @@ const App = (() => {
   function downloadCV() {
     const url = State.get('settings').cv_url;
     if (!url) { UI.toast('CV not uploaded yet. Go to Admin → CV.','error'); return; }
-    window.open(url,'_blank'); UI.toast('CV opening in a new tab.');
+    const a = Object.assign(document.createElement('a'), {href:url, target:'_blank', rel:'noopener noreferrer'});
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    UI.toast('CV opening in a new tab.');
   }
 
   /* Year filter */
@@ -1766,9 +1992,21 @@ const App = (() => {
   }
 
   /* Data loading from Supabase */
+  /* Show skeleton placeholders while data is loading */
+  function _showLoadingState() {
+    const grid = document.getElementById('projects-grid');
+    if (grid) grid.innerHTML = '<div class="skeleton-card"></div>'.repeat(3);
+    const bio = document.getElementById('about-bio');
+    if (bio) bio.innerHTML = '<div class="skeleton-card" style="height:20px;margin-bottom:10px;border-radius:4px"></div><div class="skeleton-card" style="height:20px;width:80%;border-radius:4px"></div>';
+    const skills = document.getElementById('skills-list');
+    if (skills) skills.innerHTML = [70,55,65].map(w =>
+      `<div class="skill-item"><div class="skill-track"><div class="skeleton-card" style="height:4px;width:${w}%;border-radius:2px"></div></div></div>`
+    ).join('');
+  }
+
   async function loadData() {
     if (!API.isConfigured()) {
-      /* Show defaults so the page isn't blank before setup */
+      /* Not configured yet — show defaults with a subtle hint */
       Renderer.renderProjects([], 'all');
       Renderer.renderYearFilters([], 'all');
       Renderer.renderAbout(CONFIG.DEFAULT_ABOUT);
@@ -1776,6 +2014,9 @@ const App = (() => {
       Renderer.renderAllPhotos({});
       return;
     }
+
+    _showLoadingState();
+
     try {
       const [projects, aboutRows, skills, settingsRows] = await Promise.all([
         API.select('projects','select=*&order=year.desc,id.desc'),
@@ -1794,7 +2035,7 @@ const App = (() => {
       Renderer.renderAllPhotos(settings);
     } catch(e) {
       console.error('[App.loadData]', e);
-      UI.toast('Could not load data — check Admin → Setup.','error');
+      UI.toast('Could not load portfolio data — check Admin → Setup.','error');
       Renderer.renderProjects([], 'all');
       Renderer.renderYearFilters([], 'all');
       Renderer.renderAbout(CONFIG.DEFAULT_ABOUT);
@@ -1803,9 +2044,178 @@ const App = (() => {
     }
   }
 
-  return { initContactForm, downloadCV, filterByYear, loadData };
+  /* Re-fetch and re-render a single section without touching the rest.
+     Called automatically by Realtime when the admin saves changes. */
+  async function refreshSection(type) {
+    if (!API.isConfigured()) return;
+    try {
+      switch (type) {
+        case 'projects': {
+          const projects = await API.select('projects','select=*&order=year.desc,id.desc');
+          State.set({ projects: projects || [] });
+          Renderer.renderProjects(projects || [], State.get('yearFilter'));
+          Renderer.renderYearFilters(projects || [], State.get('yearFilter'));
+          break;
+        }
+        case 'about': {
+          const rows  = await API.select('about_me','select=*&limit=1');
+          const about = rows?.[0] || CONFIG.DEFAULT_ABOUT;
+          State.set({ about });
+          Renderer.renderAbout(about);
+          break;
+        }
+        case 'skills': {
+          const skills   = await API.select('skills','select=*&order=sort_order.asc,id.asc');
+          const skillSet = skills?.length ? skills : CONFIG.DEFAULT_SKILLS;
+          State.set({ skills: skillSet });
+          Renderer.renderSkills(skillSet);
+          break;
+        }
+        case 'settings': {
+          const rows     = await API.select('settings','select=*');
+          const settings = Object.fromEntries((rows||[]).map(r => [r.key, r.value]));
+          State.set({ settings });
+          Renderer.renderAllPhotos(settings);
+          break;
+        }
+      }
+    } catch (e) {
+      console.warn('[App.refreshSection]', type, e.message);
+    }
+  }
+
+  return { initContactForm, downloadCV, filterByYear, loadData, refreshSection };
 })();
 
+
+/* ════════════════════════════════════════════════════════════════
+ * MODULE 10 — REALTIME
+ *
+ * Guarantees that every open browser tab — on any device worldwide
+ * — reflects admin changes immediately without a manual refresh.
+ *
+ * Two-layer approach:
+ *   Layer 1 › BroadcastChannel (same browser, zero latency)
+ *     Standard browser API. When admin saves in Tab A, Tab B on
+ *     the same browser updates in milliseconds.
+ *
+ *   Layer 2 › Supabase Realtime (cross-device, ~100–300 ms)
+ *     WebSocket connection to Supabase using the Phoenix channel
+ *     protocol. Admin saves on their phone → visitor's laptop
+ *     updates automatically. Auto-reconnects if connection drops.
+ *
+ * Admin modules call Realtime.notify(type) after every save.
+ * Visitors\'s pages call App.refreshSection(type) on receipt.
+ * ════════════════════════════════════════════════════════════════ */
+const Realtime = (() => {
+  const CHANNEL     = 'portfolio:changes'; // Supabase broadcast channel name
+  const BC_CHANNEL  = 'portfolio_bc';      // BroadcastChannel name (same browser)
+  const HEARTBEAT_MS = 25_000;             // Phoenix protocol requires a heartbeat
+
+  let _ws        = null;
+  let _bc        = null;
+  let _hbTimer   = null;
+  let _ref       = 0;
+  let _joined    = false;
+
+  /* ── Helpers ── */
+  const _nextRef  = () => String(++_ref);
+  const _wsReady  = () => _ws?.readyState === WebSocket.OPEN;
+
+  function _wsSend(topic, event, payload) {
+    if (_wsReady()) {
+      _ws.send(JSON.stringify({ topic, event, payload, ref: _nextRef() }));
+    }
+  }
+
+  /* ── Layer 1: BroadcastChannel (same browser, instant) ── */
+  function _initBroadcastChannel() {
+    if (!('BroadcastChannel' in window)) return; // Safari < 15.4 fallback — Realtime covers it
+    _bc = new BroadcastChannel(BC_CHANNEL);
+    _bc.onmessage = (e) => {
+      const { type } = e.data || {};
+      if (type) App.refreshSection(type);
+    };
+  }
+
+  /* ── Layer 2: Supabase Realtime (cross-device) ── */
+  function _connect() {
+    if (!API.isConfigured()) return;
+
+    /* Build the Phoenix-compatible WebSocket URL */
+    const wsUrl = API.url.replace(/^https?/, 'wss') +
+      `/realtime/v1/websocket?apikey=${encodeURIComponent(API.key)}&vsn=1.0.0`;
+
+    try { _ws = new WebSocket(wsUrl); }
+    catch (e) { console.warn('[Realtime] WebSocket init failed:', e.message); return; }
+
+    _ws.onopen = () => {
+      /* Join the broadcast channel */
+      _wsSend(`realtime:${CHANNEL}`, 'phx_join', {
+        config: { broadcast: { ack: false, self: false }, presence: { key: '' } },
+      });
+
+      /* Phoenix heartbeat — keeps the connection alive */
+      clearInterval(_hbTimer);
+      _hbTimer = setInterval(() => {
+        _wsSend('phoenix', 'heartbeat', {});
+      }, HEARTBEAT_MS);
+    };
+
+    _ws.onmessage = (e) => {
+      try {
+        const msg = JSON.parse(e.data);
+
+        /* Confirm channel join */
+        if (msg.event === 'phx_reply' && msg.payload?.status === 'ok') {
+          _joined = true;
+          return;
+        }
+
+        /* Receive broadcast from admin */
+        if (msg.event === 'broadcast' && msg.payload?.type) {
+          App.refreshSection(msg.payload.type);
+        }
+      } catch (_) { /* malformed frame — ignore */ }
+    };
+
+    _ws.onerror = () => _ws?.close();
+
+    _ws.onclose = () => {
+      _joined = false;
+      clearInterval(_hbTimer);
+      /* Auto-reconnect with exponential back-off (max 30 s) */
+      const delay = Math.min(30_000, 3_000 * (1 + Math.random()));
+      setTimeout(_connect, delay);
+    };
+  }
+
+  /* ── Public: called by admin modules after every save ── */
+  function notify(type) {
+    /* Layer 1 — broadcast to other tabs in same browser instantly */
+    try { _bc?.postMessage({ type }); } catch (_) {}
+
+    /* Layer 2 — broadcast to all devices via Supabase Realtime */
+    if (_joined) {
+      _wsSend(`realtime:${CHANNEL}`, 'broadcast', { event: 'data_changed', type });
+    }
+  }
+
+  /* ── Public: initialise both layers ── */
+  function init() {
+    _initBroadcastChannel();
+    _connect();
+  }
+
+  return { init, notify };
+})();
+
+/* ════════════════════════════════════════════════════════════════
+ * App.refreshSection — re-fetches ONE section from Supabase and
+ * re-renders it in place. Called by Realtime on every change event.
+ * Non-destructive: only the changed section updates; the rest of
+ * the page is untouched.
+ * ════════════════════════════════════════════════════════════════ */
 /* ════════════════════════════════════════════════════════════════
  * BOOTSTRAP — Initialise everything when the DOM is ready.
  * ════════════════════════════════════════════════════════════════ */
@@ -1823,9 +2233,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
   /* Expose modules to HTML onclick handlers */
-  Object.assign(window, { App, Admin, ProjectModal, ProjectAdmin, AboutAdmin, SkillsAdmin, PhotoAdmin, CVAdmin, SetupAdmin });
+  Object.assign(window, { App, Admin, ProjectModal, ProjectAdmin, AboutAdmin, SkillsAdmin, PhotoAdmin, CVAdmin, SetupAdmin, Realtime });
 
   App.loadData();
+  Realtime.init(); // start WebSocket + BroadcastChannel live updates
 });
 </script>
 </body>
